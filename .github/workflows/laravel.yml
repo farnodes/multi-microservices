@@ -23,7 +23,7 @@ jobs:
     #  run: echo "${{ secrets.ENV_FILE }}" > .env
 
     - name: Build the Docker image
-      run: docker build -t ${{ secrets.DOCKERHUB_USERNAME }}\/laravel:v1 .
+      run: docker build -t ${{ secrets.DOCKERHUB_USERNAME }}\/laravel:v1 Laravel/.
 
       # Step 4: Push the Docker image to Docker Hub
     - name: Push Docker image to Docker Hub
