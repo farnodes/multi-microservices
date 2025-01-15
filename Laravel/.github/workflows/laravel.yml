@@ -1,0 +1,84 @@
+
+name: Laravel
+
+on:
+  push:
+    branches: [ "main" ]
+
+
+jobs:
+  laravel-tests:
+
+    runs-on: self-hosted
+
+    steps:
+    - name: checkout code
+      uses: actions/checkout@v4
+    - name: Login to DockerHub Registry
+      run: echo ${{ secrets.DOCKERHUB_PASSWORD }} | docker login -u ${{ secrets.DOCKERHUB_USERNAME }} --password-stdin
+    #- name: Debug Docker Username
+     # run: echo "Docker username: ${{ secrets.DOCKERHUB_USERNAME }}"
+   # - name: Create .env File
+    #  run: echo "${{ secrets.ENV_FILE }}" > .env
+
+    - name: Build the Docker image
+      run: docker build -t ${{ secrets.DOCKERHUB_USERNAME }}\/laravel:v1 .
+
+      # Step 4: Push the Docker image to Docker Hub
+    - name: Push Docker image to Docker Hub
+      run: docker push ${{ secrets.DOCKERHUB_USERNAME }}/laravel:v1
+      
+    - name: Pull Docker Image
+      # uses: appleboy/ssh-action@v0.1.6
+      # with:
+      #   host: 192.168.29.165
+      #   username: anuj
+      #   key: ${{ secrets.VM_KEY }}
+      #   debug: true
+      #   script: |
+      #     sudo docker pull ${{ secrets.DOCKERHUB_USERNAME }}/laravel:v1
+      run: sudo docker pull ${{ secrets.DOCKERHUB_USERNAME }}/laravel:v1
+    - name: Check if container exists      
+      id: check-container
+      run: |
+          CONTAINER_NAME="laravel_app"
+          if [ "$(docker ps -aq -f name=$CONTAINER_NAME)" ]; then
+            echo "Container exists"
+            echo "container_found=true" >> $GITHUB_ENV
+          else
+            echo "Container does not exist"
+            echo "container_found=false" >> $GITHUB_ENV
+          fi
+
+    - name: Stop and remove the container (if found)
+      if: env.container_found == 'true'
+      run: |
+          CONTAINER_NAME="laravel_app"
+          echo "Stopping and removing existing container..."
+          docker stop $CONTAINER_NAME || true
+          docker rm $CONTAINER_NAME || true
+
+
+   # - name: Stop and remove container
+      # uses: appleboy/ssh-action@v0.1.6
+      # with:
+      #   host: ${{ secrets.VM_IP }}
+      #   username: ${{ secrets.VM_USER }}
+      #   key: ${{ secrets.VM_KEY }}
+      #   script: |
+      #     sudo docker stop laravel_app || true
+      #     sudo docker rm laravel_app || true
+
+    #  run: sudo docker stop laravel_app
+    #- name: Remove container
+    #  run: sudo docker rm laravel_app
+    - name: Deploy Application
+      # uses: appleboy/ssh-action@v0.1.6
+      # with:
+      #   host: ${{ secrets.VM_IP }}
+      #   username: ${{ secrets.VM_USER }}
+      #   key: ${{ secrets.VM_KEY }}
+      #   script: |
+      #     sudo docker run -d -e APP_NAME=Laravel -e APP_ENV=local -e APP_KEY=base64:kq8LEn6X8CR+nNLh9aIhp4mnYyYlS+zROS813S8s52U= -e APP_DEBUG=true -e APP_URL=http://localhost:9000 -e LOG_CHANNEL=stack -e DB_CONNECTION=mysql -e DB_HOST=192.168.29.149 -e DB_PORT=3306 -e DB_DATABASE=timetable -e DB_USERNAME=anuj -e DB_PASSWORD=0000 -p 9000:9000 --name laravel_app sewani/laravel:v1
+
+      run: sudo docker run -d -e APP_NAME=Laravel -e APP_ENV=local -e APP_KEY=base64:kq8LEn6X8CR+nNLh9aIhp4mnYyYlS+zROS813S8s52U= -e APP_DEBUG=true -e APP_URL=http://localhost:9000 -e LOG_CHANNEL=stack -e DB_CONNECTION=mysql -e DB_HOST=192.168.29.149 -e DB_PORT=3306 -e DB_DATABASE=timetable -e DB_USERNAME=anuj -e DB_PASSWORD=0000 -p 9000:9000 --name laravel_app sewani/laravel:v1
