@@ -1,8 +1,0 @@
-services:
-  laravel_app:
-    build:
-      context: ./
-      dockerfile: Dockerfile
-    container_name: laravel_app
-    ports: 
-      - 9000:9000
