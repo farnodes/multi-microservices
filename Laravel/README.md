@@ -15,8 +15,11 @@ Demo-project showing how to use roles-permissions (students, teachers, admins), 
 - - - - - 
 
 ![Laravel School Timetable Add New Lesson](https://quickadminpanel.com/blog/wp-content/uploads/2020/02/Screen-Shot-2020-02-18-at-10.24.56-AM.png)
+- - - - - 
 
+### CICD Architecture
 ![My Image](CICD-Architecture.excalidraw.png)
+- - - - - 
 
 ## How to use
 
