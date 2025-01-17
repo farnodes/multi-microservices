@@ -64,7 +64,7 @@ jobs:
       run: |
         BRANCH_NAME="${{ github.ref }}"
         BRANCH_NAME=${BRANCH_NAME#refs/heads/}  
-        echo ${pwd}
+        echo "Current directory: ${PWD}"
 
         if [[ "$BRANCH_NAME" == "prod" ]]; then
           echo "create_network=docker network create laravel_network" >> $GITHUB_ENV
