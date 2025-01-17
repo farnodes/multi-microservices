@@ -26,7 +26,6 @@ COPY server.php ./
 COPY phpunit.xml ./
 
 #COPY .env ./
-
 RUN chown -R www-data:www-data storage bootstrap/cache
 RUN composer update
 RUN composer install
