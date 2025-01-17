@@ -24,7 +24,7 @@ jobs:
       id: set-docker-tag
       run: |
         BRANCH_NAME="${{ github.ref }}"
-        BRANCH_NAME=${BRANCH_NAME#refs/heads/}  # Remove refs/heads/ prefix
+        BRANCH_NAME=${BRANCH_NAME}  
 
         if [[ "$BRANCH_NAME" == "dev" ]]; then
           echo "image_tag=dev-v1" >> $GITHUB_ENV
@@ -72,7 +72,7 @@ jobs:
       id: deployment-command
       run: |
         BRANCH_NAME="${{ github.ref }}"
-        BRANCH_NAME=${BRANCH_NAME#refs/heads/}  # Remove refs/heads/ prefix
+        BRANCH_NAME=${BRANCH_NAME}  
 
         if [[ "$BRANCH_NAME" == "dev" ]]; then
           echo "deploy_command=docker run -d -e APP_NAME=Laravel -e APP_ENV=dev -e APP_KEY=base64:kq8LEn6X8CR+nNLh9aIhp4mnYyYlS+zROS813S8s52U= -e APP_DEBUG=true -e APP_URL=http://localhost:8000 -e LOG_CHANNEL=stack -e DB_CONNECTION=mysql -e DB_HOST=192.168.29.154 -e DB_PORT=3306 -e DB_DATABASE=laravel -e DB_USERNAME=laravel -e DB_PASSWORD=0000 -p 8000:8000 --name ${{ env.container_name }} sewani/laravel:${{ env.image_tag }} >> $GITHUB_ENV
