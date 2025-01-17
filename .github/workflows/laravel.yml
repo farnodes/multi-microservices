@@ -58,6 +58,7 @@ jobs:
         else
           echo "Container does not exist"
           echo "container_found=false" >> $GITHUB_ENV
+       fi
 
     - name: Stop and remove the container (if found)
       if: env.container_found == 'true'
