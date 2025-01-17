@@ -5,10 +5,7 @@ name: Laravel
 on:
   push:
     branches: 
-      - main
       - dev
-      - prod
-
 jobs:
   laravel-tests:
 
