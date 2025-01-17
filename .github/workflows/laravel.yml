@@ -5,9 +5,9 @@ name: Laravel
 on:
   push:
     branches: 
-      - "main"
-      - "dev"
-      - "prod"
+      - main
+      - dev
+      - prod
 
 jobs:
   laravel-tests:
@@ -17,6 +17,8 @@ jobs:
     steps:
     - name: checkout code
       uses: actions/checkout@v4
+      with:
+          ref: ${{ github.ref_name }}
     - name: Login to DockerHub Registry
       run: echo ${{ secrets.DOCKERHUB_PASSWORD }} | docker login -u ${{ secrets.DOCKERHUB_USERNAME }} --password-stdin
     - name: Set Docker Image and Container Tag
