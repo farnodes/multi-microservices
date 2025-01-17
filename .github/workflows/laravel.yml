@@ -52,7 +52,7 @@ jobs:
     - name: Check if container exists      
       id: check-container
       run: |
-        if [ "$(docker ps -aq -f name=${{ env.container_name }})" ]; then
+        if [[ "$(docker ps -aq -f name=${{ env.container_name }})" ]]; then
           echo "Container exists ${{ env.container_name }}"
           echo "container_found=true" >> $GITHUB_ENV
         else
