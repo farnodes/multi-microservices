@@ -5,6 +5,7 @@ name: Laravel
 on:
   push:
     branches: 
+      - main
       - dev
 jobs:
   laravel-tests:
@@ -29,7 +30,7 @@ jobs:
           echo "container_name=laravel-main-container" >> $GITHUB_ENV
         elif [[ "${{github.ref_name }}" == "prod" ]]; then
           echo "image_tag=prod-v1" >> $GITHUB_ENV
-          echo "container_name=laravel-prod-container" > $GITHUB_ENV 
+          echo "container_name=laravel-prod-container" >> $GITHUB_ENV 
         fi
 
     - name: Log Docker Tag
