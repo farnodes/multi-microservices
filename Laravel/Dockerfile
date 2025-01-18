@@ -30,7 +30,7 @@ COPY phpunit.xml ./
 RUN chown -R www-data:www-data storage bootstrap/cache
 RUN composer update
 RUN composer install
-EXPOSE 8000
+EXPOSE 9000
 
 CMD ["php-fpm"]
 
