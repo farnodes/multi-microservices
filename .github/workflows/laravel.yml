@@ -60,11 +60,12 @@ jobs:
         echo "Stopping and removing existing container..."
         docker stop ${{ env.container_name }} || true
         docker rm ${{ env.container_name }} || true  
+        
     - name: remove the network
-      if: env.container_found == 'true'
       run: |
-        echo "removing existing network..."
-        docker network rm laravel_network
+        if: [[ "$(docker network ls -f name=laravel_network)" ]]; then
+          echo "removing existing network..."
+          docker network rm laravel_network
 
       
     - name: Running Deployment Command
