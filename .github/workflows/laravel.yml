@@ -63,8 +63,8 @@ jobs:
         
     - name: remove the network
       run: |
-        if: [[ "$(docker network ls -f name=laravel_network)" ]]; then
-          echo "removing existing network..."
+        if [[ "$(docker network ls -f name=laravel_network )" ]]; then
+          echo "Removing existing network..."
           docker network rm laravel_network
         fi
 
