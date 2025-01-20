@@ -5,6 +5,8 @@ on:
     branches:
       - dev
 
+      
+
 jobs:
   laravel-tests:
     runs-on: self-hosted
