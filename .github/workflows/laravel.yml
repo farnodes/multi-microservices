@@ -81,6 +81,6 @@ jobs:
       run: |
         docker network create laravel_network
         docker run -d -e APP_NAME=Laravel -e APP_ENV=production -e APP_KEY=${{ secrets.APP_KEY }} -e APP_DEBUG=false -e APP_URL=http://localhost -e LOG_CHANNEL=stack -e DB_CONNECTION=mysql -e DB_HOST=${{ secrets.DB_HOST }} -e DB_PORT=${{ secrets.DB_PORT }} -e DB_DATABASE=${{ secrets.DB_DATABASE }} -e DB_USERNAME=${{ secrets.DB_USERNAME }} -e DB_PASSWORD=${{ secrets.DB_PASSWORD }}  --network laravel_network --name ${{ env.container_name }} sewani/laravel:${{ env.image_tag }}
-        docker run -d --name nginx-container --network laravel_network -p 8080:80 -v {{ secrets.NGINX_CONF }} nginx:latest
+        docker run -d --name nginx-container --network laravel_network -p 8080:80 -v ${{ secrets.NGINX_CONF }} nginx:latest
       
     
