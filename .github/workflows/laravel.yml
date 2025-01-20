@@ -12,8 +12,6 @@ jobs:
     steps:
     - name: Checkout code
       uses: actions/checkout@v4
-      #with:
-       # ref: ${{ github.ref }}
 
     - name: Login to DockerHub Registry
       run: echo ${{ secrets.DOCKERHUB_PASSWORD }} | docker login -u ${{ secrets.DOCKERHUB_USERNAME }} --password-stdin
@@ -21,18 +19,9 @@ jobs:
     - name: Set Docker Image and Container Tag
       id: set-docker-tag
       run: |
-        BRANCH_NAME="${{ github.ref }}"
-        BRANCH_NAME=${BRANCH_NAME#refs/heads/}  
-
         if [[ "$BRANCH_NAME" == "dev" ]]; then
           echo "image_tag=dev-v1" >> $GITHUB_ENV
           echo "container_name=laravel-dev-container" >> $GITHUB_ENV
-        elif [[ "$BRANCH_NAME" == "main" ]]; then
-          echo "image_tag=main-v1" >> $GITHUB_ENV
-          echo "container_name=laravel-main-container" >> $GITHUB_ENV
-        elif [[ "$BRANCH_NAME" == "prod" ]]; then
-          echo "image_tag=prod-v1" >> $GITHUB_ENV
-          echo "container_name=laravel-prod-container" >> $GITHUB_ENV
         fi
 
     - name: Log Docker Tag
@@ -67,21 +56,7 @@ jobs:
         docker stop ${{ env.container_name }} || true
         docker rm ${{ env.container_name }} || true
 
-    - name: Set Deployment Command
+    - name: Deployment Command
       id: deployment-command
       run: |
-        BRANCH_NAME="${{ github.ref }}"
-        BRANCH_NAME=${BRANCH_NAME#refs/heads/}  
-
-        if [[ "$BRANCH_NAME" == "dev" ]]; then
-          echo "deploy_command=docker run -d -e APP_NAME=Laravel -e APP_ENV=dev -e APP_KEY=base64:kq8LEn6X8CR+nNLh9aIhp4mnYyYlS+zROS813S8s52U= -e APP_DEBUG=true -e APP_URL=http://localhost:8000 -e LOG_CHANNEL=stack -e DB_CONNECTION=mysql -e DB_HOST=192.168.29.154 -e DB_PORT=3306 -e DB_DATABASE=laravel -e DB_USERNAME=laravel -e DB_PASSWORD=0000 -p 8000:8000 --name ${{ env.container_name }} sewani/laravel:${{ env.image_tag }}" >> $GITHUB_ENV
-        elif [[ "$BRANCH_NAME" == "main" ]]; then
-          echo "deploy_command=docker run -d -e APP_NAME=Laravel -e APP_ENV=production -e APP_KEY=base64:kq8LEn6X8CR+nNLh9aIhp4mnYyYlS+zROS813S8s52U= -e APP_DEBUG=false -e APP_URL=http://localhost -e LOG_CHANNEL=stack -e DB_CONNECTION=mysql -e DB_HOST=192.168.29.149 -e DB_PORT=3306 -e DB_DATABASE=laravel_prod -e DB_USERNAME=laravel -e DB_PASSWORD=0000 -p 9000:9000 --name ${{ env.container_name }} sewani/laravel:${{ env.image_tag }}" >> $GITHUB_ENV
-        elif [[ "$BRANCH_NAME" == "prod" ]]; then
-          echo "deploy_command=docker run -d -e APP_NAME=Laravel -e APP_ENV=production -e APP_KEY=base64:kq8LEn6X8CR+nNLh9aIhp4mnYyYlS+zROS813S8s52U= -e APP_DEBUG=false -e APP_URL=http://localhost -e LOG_CHANNEL=stack -e DB_CONNECTION=mysql -e DB_HOST=192.168.29.154 -e DB_PORT=3306 -e DB_DATABASE=laravel_prod -e DB_USERNAME=laravel -e DB_PASSWORD=0000 -p 9000:9000 --name ${{ env.container_name }} sewani/laravel:${{ env.image_tag }}" >> $GITHUB_ENV
-        fi
-
-    - name: Deploy Application
-      run: |
-        echo "Running deployment command: $deploy_command"
-        $deploy_command
+         docker run -d -e APP_NAME=Laravel -e APP_ENV=dev -e APP_KEY=${{ secrets.APP_KEY }} -e APP_DEBUG=true -e APP_URL=http://localhost:8000 -e LOG_CHANNEL=stack -e DB_CONNECTION=mysql -e DB_HOST=${{ secrets.DB_HOST }} -e DB_PORT=${{ secrets.DB_PORT }} -e DB_DATABASE=${{ secrets.DB_DATABASE }} -e DB_USERNAME=${{ secrets.DB_USERNAME }} -e DB_PASSWORD=${{ secrets.DB_PASSWORD }} -p 8000:8000 --name ${{ env.container_name }} sewani/laravel:${{ env.image_tag }}" >> $GITHUB_ENV
