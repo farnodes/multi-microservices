@@ -53,20 +53,25 @@ jobs:
       run: |
         if [[ "$(docker ps -aq -f name=${{ env.nginx_container }})" ]]; then
           echo "Container exists ${{ env.nginx_container }}"
-          echo "container_found=true" >> $GITHUB_ENV
+          echo "nginx_container_found=true" >> $GITHUB_ENV
         else
           echo "Container does not exist"
-          echo "container_found=false" >> $GITHUB_ENV
+          echo "nginx_container_found=false" >> $GITHUB_ENV
         fi
 
     - name: Stop and remove the container (if found)
       if: env.container_found == 'true'
       run: |
         echo "Stopping and removing existing container..."
+        docker stop ${{ env.container_name }} || true
+        docker rm ${{ env.container_name }} || true 
+
+    - name: Stop and remove the nginx container (if found)
+      if: env.nginx_container_found == 'true'
+      run: |
+        echo "Stopping and removing existing container..."
         docker stop ${{ env.nginx_container }} || true
         docker rm ${{ env.nginx_container }} || true
-        docker stop ${{ env.container_name }} || true
-        docker rm ${{ env.container_name }} || true  
         
     - name: remove the network
       run: |
