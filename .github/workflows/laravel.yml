@@ -4,9 +4,6 @@ on:
   push:
     branches:
       - dev
-
-      
-
 jobs:
   laravel-tests:
     runs-on: self-hosted
