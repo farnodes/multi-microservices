@@ -21,13 +21,7 @@ jobs:
       run: |
         echo "image_tag=prod-v1" >> $GITHUB_ENV
         echo "container_name=laravel-prod-container" >> $GITHUB_ENV
-        #BRANCH_NAME="${{ github.ref }}"
-        #BRANCH_NAME=${BRANCH_NAME#refs/heads/}  
-
-        #if [[ "$BRANCH_NAME" == "prod" ]]; then
-        #  echo "image_tag=prod-v1" >> $GITHUB_ENV
-        #  echo "container_name=laravel-prod-container" >> $GITHUB_ENV
-        #fi
+        echo "nginx_container=nginx-container">>$GITHUB_ENV
 
     - name: Log Docker Tag
       run: |
@@ -54,10 +48,23 @@ jobs:
           echo "container_found=false" >> $GITHUB_ENV
         fi
 
+    - name: Check if container exists      
+      id: nginx-check-container
+      run: |
+        if [[ "$(docker ps -aq -f name=${{ env.nginx_container }})" ]]; then
+          echo "Container exists ${{ env.nginx_container }}"
+          echo "container_found=true" >> $GITHUB_ENV
+        else
+          echo "Container does not exist"
+          echo "container_found=false" >> $GITHUB_ENV
+        fi
+
     - name: Stop and remove the container (if found)
       if: env.container_found == 'true'
       run: |
         echo "Stopping and removing existing container..."
+        docker stop ${{ env.nginx_container }} || true
+        docker rm ${{ env.nginx_container }} || true
         docker stop ${{ env.container_name }} || true
         docker rm ${{ env.container_name }} || true  
         
