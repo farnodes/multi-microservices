@@ -15,6 +15,10 @@ jobs:
     - name: Login to DockerHub Registry
       run: echo ${{ secrets.DOCKERHUB_PASSWORD }} | docker login -u ${{ secrets.DOCKERHUB_USERNAME }} --password-stdin
 
+    - name: Running Unit and Functional Tests
+      run: ./vendor/bin/phpunit
+
+
     - name: Set Docker Image and Container Tag
       id: set-docker-tag
       run: |
