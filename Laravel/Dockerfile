@@ -25,15 +25,13 @@ COPY webpack.mix.js ./
 COPY server.php ./
 COPY phpunit.xml ./
 
-COPY .env ./
+#COPY .env ./
 
 RUN chown -R www-data:www-data storage bootstrap/cache
 RUN composer update
 RUN composer install
 #RUN php artisan key:generate
 #RUN php artisan migrate
-#RUN php artisan serve --host=0.0.0.0 --port=9000
 EXPOSE 8000
 CMD ["php", "artisan", "serve", "--host=0.0.0.0", "--port=8000"]
-#CMD ["php-fpm"]
 
