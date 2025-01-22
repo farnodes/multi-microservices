@@ -21,11 +21,11 @@ jobs:
 
     - name: Install Composer Dependencies
       run: sudo composer update
-      working-directory: ./Laravel
+      #working-directory: ./Laravel
 
     - name: Running Unit and Functional Tests
       run: php ./vendor/bin/phpunit
-      working-directory: ./Laravel
+      #working-directory: ./Laravel
 
 
     - name: Set Docker Image and Container Tag
