@@ -18,10 +18,8 @@ jobs:
     - name: Set Docker Image and Container Tag
       id: set-docker-tag
       run: |
-        if [[ "$BRANCH_NAME" == "dev" ]]; then
           echo "image_tag=dev-v1" >> $GITHUB_ENV
           echo "container_name=laravel-dev-container" >> $GITHUB_ENV
-        fi
 
     - name: Log Docker Tag
       run: |
