@@ -25,7 +25,7 @@ jobs:
 
     - name: Running Unit and Functional Tests
       run: php ./vendor/bin/phpunit
-      working-directory: /home/anuj/multi-microservices/Laravel
+      working-directory: ./Laravel
 
 
     - name: Set Docker Image and Container Tag
