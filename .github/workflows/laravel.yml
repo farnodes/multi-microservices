@@ -18,7 +18,7 @@ jobs:
     - name: Set Docker Image and Container Tag
       id: set-docker-tag
       run: |
-          echo "image_tag=dev-v1" >> $GITHUB_ENV
+          echo "image_tag=dev-v2" >> $GITHUB_ENV
           echo "container_name=laravel-dev-container" >> $GITHUB_ENV
 
     - name: Log Docker Tag
