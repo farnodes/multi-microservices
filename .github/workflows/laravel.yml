@@ -20,7 +20,7 @@ jobs:
       run: echo ${{ secrets.DOCKERHUB_PASSWORD }} | docker login -u ${{ secrets.DOCKERHUB_USERNAME }} --password-stdin
 
     - name: Install Composer Dependencies
-      run: composer install --no-dev --optimize-autoloader
+      run: composer update
       working-directory: /home/anuj/multi-microservices/Laravel
 
     - name: Running Unit and Functional Tests
