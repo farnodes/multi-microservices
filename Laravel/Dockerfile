@@ -24,7 +24,7 @@ COPY artisan ./
 COPY webpack.mix.js ./
 COPY server.php ./
 COPY phpunit.xml ./
-
+COPY tests/ tests/
 #COPY .env ./
 RUN chown -R www-data:www-data storage bootstrap/cache
 RUN composer update
