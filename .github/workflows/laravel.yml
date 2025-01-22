@@ -20,8 +20,8 @@ jobs:
       run: echo ${{ secrets.DOCKERHUB_PASSWORD }} | docker login -u ${{ secrets.DOCKERHUB_USERNAME }} --password-stdin
 
     - name: Install Composer Dependencies
-      run: composer update
-      working-directory: /home/anuj/multi-microservices/Laravel
+      run: sudo composer update
+      working-directory: ./Laravel
 
     - name: Running Unit and Functional Tests
       run: php ./vendor/bin/phpunit
