@@ -24,8 +24,10 @@ jobs:
       #working-directory: ./Laravel
 
     - name: Running Unit and Functional Tests
-      run: cd Laravel && php artisan test
-      #php ./vendor/bin/phpunit
+      env:
+        DB_CONNECTION: mysql
+        DB_DATABASE: ${{ secrets.DB_DATABASE }}
+      run: cd Laravel && php ./vendor/bin/phpunit
       #working-directory: ./Laravel
 
 
