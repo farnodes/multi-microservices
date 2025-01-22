@@ -24,7 +24,8 @@ jobs:
       #working-directory: ./Laravel
 
     - name: Running Unit and Functional Tests
-      run: cd Laravel && php ./vendor/bin/phpunit
+      run: cd Laravel && php artisan test
+      #php ./vendor/bin/phpunit
       #working-directory: ./Laravel
 
 
@@ -69,4 +70,4 @@ jobs:
     - name: Deployment Command
       id: deployment-command
       run: |
-         docker run -d -e APP_NAME=Laravel -e APP_ENV=dev -e APP_KEY=${{ secrets.APP_KEY }} -e APP_DEBUG=true -e APP_URL=http://localhost:8000 -e LOG_CHANNEL=stack -e DB_CONNECTION=mysql -e DB_HOST=${{ secrets.DB_HOST }} -e DB_PORT=${{ secrets.DB_PORT }} -e DB_DATABASE=${{ secrets.DB_DATABASE }} -e DB_USERNAME=${{ secrets.DB_USERNAME }} -e DB_PASSWORD=${{ secrets.DB_PASSWORD }} -p 8000:8000 --name ${{ env.container_name }} sewani/laravel:${{ env.image_tag }}
+         docker run -d -e APP_NAME=Laravel -e APP_ENV=dev -e APP_KEY=${{ secrets.APP_KEY }} -e APP_DEBUG=true -e APP_URL=http://localhost -e LOG_CHANNEL=stack -e DB_CONNECTION=mysql -e DB_HOST=${{ secrets.DB_HOST }} -e DB_PORT=${{ secrets.DB_PORT }} -e DB_DATABASE=${{ secrets.DB_DATABASE }} -e DB_USERNAME=${{ secrets.DB_USERNAME }} -e DB_PASSWORD=${{ secrets.DB_PASSWORD }} -p 8000:8000 --name ${{ env.container_name }} sewani/laravel:${{ env.image_tag }}
