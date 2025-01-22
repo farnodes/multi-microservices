@@ -24,14 +24,11 @@ COPY artisan ./
 COPY webpack.mix.js ./
 COPY server.php ./
 COPY phpunit.xml ./
-COPY tests/ ./
+
 #COPY .env ./
 RUN chown -R www-data:www-data storage bootstrap/cache
 RUN composer update
 RUN composer install
-
-#RUN composer update --no-dev --optimize-autoloader
-#RUN composer install --no-dev --optimize-autoloader
 
 EXPOSE 8000
 CMD ["php", "artisan", "serve", "--host=0.0.0.0", "--port=8000"]
