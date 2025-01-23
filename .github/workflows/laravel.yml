@@ -9,6 +9,7 @@ jobs:
   laravel-tests:
     runs-on: self-hosted
 
+
     steps:
 
     - name: Fix permissions before checkout
