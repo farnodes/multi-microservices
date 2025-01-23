@@ -26,7 +26,7 @@ jobs:
         php-version: '8.1'
 
     - name: Install Composer Dependencies
-      run: cd Laravel && composer update --no-dev --optimize-autoloader && composer fund && composer install --no-dev --optimize-autoloader
+      run: cd Laravel && composer update --no-dev --optimize-autoloader && composer require --dev phpunit/phpunit
 
     - name: Running Unit and Functional Tests
       env:
@@ -37,7 +37,8 @@ jobs:
         DB_PORT: ${{ secrets.DB_PORT }} 
         DB_USERNAME: ${{ secrets.DB_USERNAME }} 
         DB_PASSWORD: ${{ secrets.DB_PASSWORD }}
-      run: cd Laravel && php ./vendor/bin/phpunit
+      run: cd Laravel && php artisan test
+# php ./vendor/bin/phpunit
 
     - name: Login to DockerHub Registry
       run: echo ${{ secrets.DOCKERHUB_PASSWORD }} | docker login -u ${{ secrets.DOCKERHUB_USERNAME }} --password-stdin
