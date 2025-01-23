@@ -26,7 +26,7 @@ jobs:
         php-version: '8.1'
 
     - name: Install Composer Dependencies
-      run: cd Laravel && composer update --no-dev --optimize-autoloader
+      run: cd Laravel && composer update --no-dev --optimize-autoloader && composer fund && composer install --no-dev --optimize-autoloader
 
     - name: Running Unit and Functional Tests
       env:
