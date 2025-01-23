@@ -28,8 +28,7 @@ COPY tests/ tests/
 #COPY .env ./
 
 RUN chown -R www-data:www-data storage bootstrap/cache
-RUN composer update
-RUN composer install
+RUN composer update --no-dev --optimize-autoloader
 EXPOSE 9000
 
 CMD ["php-fpm"]
