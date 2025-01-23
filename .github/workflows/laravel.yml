@@ -77,7 +77,7 @@ jobs:
         docker rm ${{ env.container_name }} || true
 
     - name: Migrating database
-      run: php artisan migrate --seed
+      run: cd Laravel && php artisan migrate --seed
 
     - name: Deployment Command
       id: deployment-command
