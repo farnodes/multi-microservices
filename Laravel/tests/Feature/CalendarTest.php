@@ -8,10 +8,12 @@ use App\SchoolClass;
 use App\User;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Tests\TestCase;
+use DatabaseTransactions;
 
 class CalendarTest extends TestCase
 {
-    //use RefreshDatabase;
+	//use RefreshDatabase;
+	use DatabaseTransactions;
 
     /**
      * Test Calendar Page Returns 200 code, so no errors.
