@@ -76,8 +76,8 @@ jobs:
         docker stop ${{ env.container_name }} || true
         docker rm ${{ env.container_name }} || true
 
-    - name: Migrating database
-      run: cd Laravel && php artisan migrate --seed
+    # - name: Migrating database
+    #   run: cd Laravel && php artisan migrate --seed
 
     - name: Deployment Command
       id: deployment-command
