@@ -11,7 +11,7 @@ use Tests\TestCase;
 
 class CalendarTest extends TestCase
 {
-    use RefreshDatabase;
+    //use RefreshDatabase;
 
     /**
      * Test Calendar Page Returns 200 code, so no errors.
