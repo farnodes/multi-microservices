@@ -26,8 +26,7 @@ jobs:
 
     - name: Install Composer Dependencies
       run: cd Laravel && sudo composer update
-      #working-directory: ./Laravel
-
+    
     - name: Running Unit and Functional Tests
       env:
         APP_KEY: ${{ secrets.APP_KEY }} 
@@ -38,9 +37,7 @@ jobs:
         DB_USERNAME: ${{ secrets.DB_USERNAME }} 
         DB_PASSWORD: ${{ secrets.DB_PASSWORD }}
       run: cd Laravel && php ./vendor/bin/phpunit
-      #working-directory: ./Laravel
-
-
+      
     - name: Set Docker Image and Container Tag
       id: set-docker-tag
       run: |
@@ -78,6 +75,9 @@ jobs:
         echo "Stopping and removing existing container..."
         docker stop ${{ env.container_name }} || true
         docker rm ${{ env.container_name }} || true
+
+    - name: Migrating database
+      run: php artisan migrate --seed
 
     - name: Deployment Command
       id: deployment-command
