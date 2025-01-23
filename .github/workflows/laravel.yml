@@ -12,7 +12,7 @@ jobs:
     steps:
 
     - name: Fix permissions before checkout
-      run: echo "${{GITHUB_WORKSPACE }}" && chown -R $USER:$USER $GITHUB_WORKSPACE && chmod -R u+rwx $GITHUB_WORKSPACE || true
+      run: echo "${{ GITHUB_WORKSPACE }} && chown -R $USER:$USER $GITHUB_WORKSPACE && chmod -R u+rwx $GITHUB_WORKSPACE || true
     
     - name: Checkout code
       uses: actions/checkout@v4
