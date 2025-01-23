@@ -11,8 +11,8 @@ jobs:
 
     steps:
 
-    - name: Fix permissions before checkout
-      run: chown -R $USER:$USER $GITHUB_WORKSPACE && chmod -R u+rwx $GITHUB_WORKSPACE || true
+    # - name: Fix permissions before checkout
+    #   run: chown -R $USER:$USER $GITHUB_WORKSPACE && chmod -R u+rwx $GITHUB_WORKSPACE || true
     
     - name: Checkout code
       uses: actions/checkout@v4
@@ -25,7 +25,7 @@ jobs:
         php-version: '8.1'
 
     - name: Install Composer Dependencies
-      run: cd Laravel && sudo composer update
+      run: cd Laravel && composer update --no-dev --optimize-autoloader
 
     - name: Running Unit and Functional Tests
       env:
