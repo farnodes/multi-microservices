@@ -84,7 +84,7 @@ jobs:
         DB_PORT: ${{ secrets.DB_PORT }} 
         DB_USERNAME: ${{ secrets.DB_USERNAME }} 
         DB_PASSWORD: ${{ secrets.DB_PASSWORD }}
-      run: cd Laravel && php artisan migrate --seed
+      run: cd Laravel && php artisan migrate --seed --force
 
     - name: Deployment Command
       id: deployment-command
