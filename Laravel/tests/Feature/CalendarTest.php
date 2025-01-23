@@ -8,7 +8,7 @@ use App\SchoolClass;
 use App\User;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Tests\TestCase;
-use DatabaseTransactions;
+use Illuminate\Foundation\Testing\DatabaseTransactions;
 
 class CalendarTest extends TestCase
 {
