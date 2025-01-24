@@ -31,7 +31,7 @@ jobs:
       # env:
       #     SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
       run: |
-          wget https://binaries.sonarsource.com/Distribution/sonar-scanner-cli/sonar-scanner-cli-6.2.1.4610-linux.zip
+          sudo wget https://binaries.sonarsource.com/Distribution/sonar-scanner-cli/sonar-scanner-cli-6.2.1.4610-linux.zip
           cd Laravel && unzip sonar-scanner-cli-6.2.1.4610-linux.zip
           cd Laravel && ./sonar-scanner-6.2.1.4610-linux/bin/sonar-scanner \
            -Dsonar.projectKey=test   \
