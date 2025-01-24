@@ -19,9 +19,10 @@ jobs:
 
     - name: Install DeepSource CLI
       run: |
-          curl https://deepsource.io/cli | sh
-          echo "$HOME/.deepsource/bin" >> $GITHUB_PATH
-          deepsource --version  # Verify installation
+          url https://deepsource.io/cli | sh
+          echo "$(pwd)/bin" >> $GITHUB_PATH
+          echo "DeepSource CLI installed at: $(pwd)/bin/deepsource"
+          $(pwd)/bin/deepsource --version  # Verify installation
 
 
     - name: Run DeepSource Analysis in Laravel Directory
