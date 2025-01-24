@@ -3,14 +3,10 @@ version = 1
 [[analyzers]]
 name = "php"
 enabled = true
+test_patterns = ["tests/**/*.php"]
 
 
   [analyzers.meta]
   php_version = "8.1"  # Change based on your Laravel setup
 
-  [analyzers.preset]
-  security = true
-  performance = true
-  style = true
-  bug_risk = true
-
+ 
