@@ -19,7 +19,7 @@ jobs:
 
     - name: Install DeepSource CLI
       run: |
-          url https://deepsource.io/cli | sh
+          curl https://deepsource.io/cli | sh
           echo "$(pwd)/bin" >> $GITHUB_PATH
           echo "DeepSource CLI installed at: $(pwd)/bin/deepsource"
           $(pwd)/bin/deepsource --version  # Verify installation
