@@ -33,7 +33,7 @@ jobs:
     - name: Run DeepSource Analysis in Laravel Directory
       run: |
         cd Laravel
-        ./bin/deepsource analyze
+        ./bin/deepsource report --analyzer php --key php --value-file ./coverage.xml
       env:
         DEEPSOURCE_DSN: ${{ secrets.DEEPSOURCE_DSN }}
     # - name: Setup php
