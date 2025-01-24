@@ -22,13 +22,13 @@ jobs:
           curl https://deepsource.io/cli | sh
           echo "$(pwd)/bin" >> $GITHUB_PATH
           echo "DeepSource CLI installed at: $(pwd)/bin/deepsource"
-          $(pwd)/bin/deepsource --version  # Verify installation
+          #$(pwd)/bin/deepsource --version  # Verify installation
 
 
     - name: Run DeepSource Analysis in Laravel Directory
       run: |
           cd Laravel/
-          deepsource report --analyze
+          $(pwd)/bin/deepsource report --analyze
       env:
           DEEPSOURCE_DSN: ${{ secrets.DEEPSOURCE_DSN }}
     # - name: Setup php
