@@ -32,8 +32,7 @@ jobs:
 
     - name: Generate PHPUnit coverage report
       run: |
-        cd Laravel
-        ./vendor/bin/phpunit --coverage-html=coverage --coverage-xml=coverage.xml
+        cd Laravel/ && ./vendor/bin/phpunit --coverage-html=coverage --coverage-xml=coverage.xml
 
     - name: Verify DeepSource Installation in Laravel Directory
       run: |
