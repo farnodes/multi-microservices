@@ -30,9 +30,9 @@ jobs:
         cd Laravel
         composer install --no-dev --prefer-dist
 
-    - name: Generate PHPUnit coverage report
-      run: |
-        cd Laravel/ && ./vendor/bin/phpunit --coverage-html=coverage --coverage-xml=coverage.xml
+    # - name: Generate PHPUnit coverage report
+    #   run: |
+    #     cd Laravel/ && ./vendor/bin/phpunit --coverage-html=coverage --coverage-xml=coverage.xml
 
     - name: Verify DeepSource Installation in Laravel Directory
       run: |
@@ -43,7 +43,7 @@ jobs:
     - name: Run DeepSource Analysis in Laravel Directory
       run: |
         cd Laravel
-        ./bin/deepsource report --analyzer php --key php --value-file ./coverage.xml
+        ./bin/deepsource report --analyzer php --key php --value-file ./a.xml
       env:
         DEEPSOURCE_DSN: ${{ secrets.DEEPSOURCE_DSN }}
     # - name: Setup php
