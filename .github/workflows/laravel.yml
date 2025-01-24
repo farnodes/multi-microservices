@@ -17,21 +17,25 @@ jobs:
       with:
          clean: true
 
-    - name: Install DeepSource CLI
+    - name: Install DeepSource CLI in Laravel Directory
       run: |
-          cd Laravel && curl https://deepsource.io/cli | sh
-          echo "Larael/bin" >> $GITHUB_PATH
-          echo "DeepSource CLI installed at: Laravel/bin/deepsource"
-          #$HOME/bin/deepsource --version  # Verify installation
+        cd Laravel
+        curl https://deepsource.io/cli | sh
+        echo "$(pwd)/bin" >> $GITHUB_PATH
+        echo "DeepSource CLI installed at: $(pwd)/bin/deepsource"
 
+    - name: Verify DeepSource Installation in Laravel Directory
+      run: |
+        cd Laravel
+        which deepsource
+        deepsource --version
 
     - name: Run DeepSource Analysis in Laravel Directory
       run: |
-          export PATH="Laravel/bin:$PATH"
-          cd Laravel/bin/ && deepsource report --analyze
-    
+        cd Laravel
+        ./bin/deepsource report --analyze
       env:
-          DEEPSOURCE_DSN: ${{ secrets.DEEPSOURCE_DSN }}
+        DEEPSOURCE_DSN: ${{ secrets.DEEPSOURCE_DSN }}
     # - name: Setup php
     #   uses: shivammathur/setup-php@v2
     #   with:
