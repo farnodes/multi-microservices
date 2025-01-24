@@ -3,7 +3,7 @@ version = 1
 [[analyzers]]
 name = "php"
 enabled = true
-exclude_files = ["coverage.xml", "a.xml"]
+
 
   [analyzers.meta]
   php_version = "8.1"  # Change based on your Laravel setup
