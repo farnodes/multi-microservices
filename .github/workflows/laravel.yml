@@ -34,10 +34,7 @@ jobs:
       with:
         projectBaseDir: .
         args: >
-          -Dsonar.projectKey=test   \
-          -Dsonar.sources=Laravel  \
-          -Dsonar.host.url=http://localhost:9000  \
-          -Dsonar.token=sqp_3a1a44cd0f6b7faa3bbecaaba24ff0d593bff2dc
+          -Dsonar.projectKey=test  -Dsonar.sources=Laravel  -Dsonar.host.url=http://localhost:9000  -Dsonar.token=sqp_3a1a44cd0f6b7faa3bbecaaba24ff0d593bff2dc
       
 
     - name: Login to DockerHub Registry
