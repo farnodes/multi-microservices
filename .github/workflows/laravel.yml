@@ -34,9 +34,7 @@ jobs:
       with:
         projectBaseDir: .
         args: >
-          -Dsonar.projectKey=multi-microservices  -Dsonar.sources=Laravel  -Dsonar.host.url=http://localhost:9000  -Dsonar.token=$SONAR_TOKEN
-          #sqp_3a1a44cd0f6b7faa3bbecaaba24ff0d593bff2dc
-      
+          -Dsonar.projectKey=multi-microservices -Dsonar.organization=farnodes -Dsonar.sources=Laravel  -Dsonar.exclusions=Laravel/vendor/**,Laravel/storage/**,Laravel/node_modules/** -Dsonar.host.url=https://sonarcloud.io  -Dsonar.token=$SONAR_TOKEN  
 
     - name: Login to DockerHub Registry
       run: echo ${{ secrets.DOCKERHUB_PASSWORD }} | docker login -u ${{ secrets.DOCKERHUB_USERNAME }} --password-stdin
