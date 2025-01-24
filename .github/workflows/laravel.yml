@@ -31,13 +31,15 @@ jobs:
       # env:
       #     SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
       run: |
-          sudo wget https://binaries.sonarsource.com/Distribution/sonar-scanner-cli/sonar-scanner-cli-6.2.1.4610-linux.zip
-          cd Laravel && unzip sonar-scanner-cli-6.2.1.4610-linux.zip
+  
+          curl -sLO https://binaries.sonarsource.com/Distribution/sonar-scanner-cli/sonar-scanner-cli.zip
+    
+          cd Laravel && unzip sonar-scanner-cli.zip
           cd Laravel && ./sonar-scanner-6.2.1.4610-linux/bin/sonar-scanner \
-           -Dsonar.projectKey=test   \
-           -Dsonar.sources=Laravel  \
-           -Dsonar.host.url=http://localhost:9000  \
-           -Dsonar.token=sqp_3a1a44cd0f6b7faa3bbecaaba24ff0d593bff2dc
+          -Dsonar.projectKey=test   \
+          -Dsonar.sources=Laravel  \
+          -Dsonar.host.url=http://localhost:9000  \
+          -Dsonar.token=sqp_3a1a44cd0f6b7faa3bbecaaba24ff0d593bff2dc
       
 
     - name: Login to DockerHub Registry
