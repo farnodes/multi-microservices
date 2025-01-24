@@ -27,8 +27,10 @@ jobs:
 
     - name: Run DeepSource Analysis in Laravel Directory
       run: |
+          export PATH="$HOME/bin:$PATH"
           cd Laravel/
-          $HOME/bin/deepsource report --analyze
+          deepsource report --analyze
+    
       env:
           DEEPSOURCE_DSN: ${{ secrets.DEEPSOURCE_DSN }}
     # - name: Setup php
