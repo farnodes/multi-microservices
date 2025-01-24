@@ -24,6 +24,17 @@ jobs:
         echo "$(pwd)/bin" >> $GITHUB_PATH
         echo "DeepSource CLI installed at: $(pwd)/bin/deepsource"
 
+
+    - name: Install Composer dependencies
+      run: |
+        cd Laravel
+        composer install --no-dev --prefer-dist
+
+    - name: Generate PHPUnit coverage report
+      run: |
+        cd Laravel
+        ./vendor/bin/phpunit --coverage-html=coverage --coverage-xml=coverage.xml
+
     - name: Verify DeepSource Installation in Laravel Directory
       run: |
         cd Laravel
@@ -33,7 +44,7 @@ jobs:
     - name: Run DeepSource Analysis in Laravel Directory
       run: |
         cd Laravel
-        ./bin/deepsource report --analyzer php --key php
+        ./bin/deepsource report --analyzer php --key php --value-file ./coverage.xml
       env:
         DEEPSOURCE_DSN: ${{ secrets.DEEPSOURCE_DSN }}
     # - name: Setup php
