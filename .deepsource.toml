@@ -20,12 +20,12 @@ enabled = true
   [analyzers.meta]
   bootstrap_files = ["Laravel/config/bootstrap.php"]
 
-[[analyzers]]
+#[[analyzers]]
 
-name = "test-coverage"
-enabled = true
+#name = "test-coverage"
+#enabled = true
 
-  [analyzers.test-coverage]
-  report_glob = "Laravel/coverage.xml/index.xml"
-  key= "php"
+#  [analyzers.test-coverage]
+#  report_glob = "Laravel/coverage.xml/index.xml"
+#  key= "php"
 
