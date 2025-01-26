@@ -6,6 +6,7 @@ exclude_patterns = [
   "Laravel/vendor/**"
 ]
 
+
 [[analyzers]]
 name = "php"
 enabled = true
