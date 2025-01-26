@@ -2,7 +2,13 @@ version = 1
 
 [[analyzers]]
 name = "php"
+enabled = true
 
+  [analyzers.php]
+  runtime_version = "8.1"
+  install_composer_dependencies = true
+  analyze_tests = true
+  source_directory = "Laravel"
 [[analyzers]]
 
 name = "test-coverage"
