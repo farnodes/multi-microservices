@@ -1,4 +1,10 @@
 version = 1
+test_patterns = [
+  "Laravel/tests/**"
+]
+exclude_patterns = [
+  "Laravel/vendor/**"
+]
 
 [[analyzers]]
 name = "php"
@@ -9,6 +15,11 @@ enabled = true
   install_composer_dependencies = true
   analyze_tests = true
   source_directory = "Laravel"
+
+
+  [analyzers.meta]
+  bootstrap_files = ["Laravel/config/bootstrap.php"]
+
 [[analyzers]]
 
 name = "test-coverage"
@@ -16,5 +27,5 @@ enabled = true
 
   [analyzers.test-coverage]
   report_glob = "Laravel/coverage.xml/index.xml"
-
+  key= "php"
 
