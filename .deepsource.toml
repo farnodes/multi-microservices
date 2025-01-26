@@ -7,7 +7,7 @@ exclude_patterns = [
 ]
 
 [[analyzers]]
-name = "phpi"
+name = "php"
 enabled = true
 
   [analyzers.php]
