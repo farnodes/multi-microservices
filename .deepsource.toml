@@ -9,12 +9,12 @@ enabled = true
   install_composer_dependencies = true
   analyze_tests = true
   source_directory = "Laravel"
-  report_glob = "Laravel/coverage.xml/index.xml"
+  #report_glob = "Laravel/coverage.xml/index.xml"
 
 [[analyzers]]
 name = "test-coverage"
 enabled = true
 
-  [analyzers.test-coverage]
-  report_glob = "Laravel/coverage.xml/index.xml"
+  #[analyzers.test-coverage]
+  #report_glob = "Laravel/coverage.xml/index.xml"
 
