@@ -20,7 +20,7 @@ enabled = true
   [analyzers.meta]
   bootstrap_files = ["Laravel/config/bootstrap.php"]
 
-[[analyzers]]
+#[[analyzers]]
 
 #name = "test-coverage"
 #enabled = true
