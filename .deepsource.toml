@@ -1,14 +1,14 @@
 version = 1
 
-#[[analyzers]]
-#name = "php"
-#enabled = true
+[[analyzers]]
+name = "php"
+enabled = true
 
-#  [analyzers.php]
-#  runtime_version = "8.1"  # Adjust PHP version based on your project
-#  install_composer_dependencies = true
-#  analyze_tests = true
-#  source_directory = "Laravel"  # Ensure correct path
+  [analyzers.php]
+  runtime_version = "8.1"
+  install_composer_dependencies = true
+  analyze_tests = true
+  source_directory = "Laravel"
 
 [[analyzers]]
 name = "test-coverage"
@@ -16,8 +16,4 @@ enabled = true
 
   [analyzers.test-coverage]
   report_glob = "Laravel/coverage.xml/**/*.xml"
-  runtime_version = "8.1"  # Adjust PHP version based on your project
-  install_composer_dependencies = true
-  analyze_tests = true
-  source_directory = "Laravel"  # Ensure correct path
 
