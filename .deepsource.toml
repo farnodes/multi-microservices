@@ -20,7 +20,7 @@ enabled = true
 
   [analyzers.meta]
   bootstrap_files = ["Laravel/config/bootstrap.php"]
-  cyclomatic_complexity_threshold = "high"
+  
 
 
 [[analyzers]]
