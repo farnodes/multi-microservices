@@ -25,7 +25,7 @@ enabled = true
 name = "test-coverage"
 enabled = true
 
-#  [analyzers.test-coverage]
-#  report_glob = "Laravel/coverage.xml/index.xml"
-#  key= "php"
+  [analyzers.test-coverage]
+  report_glob = "Laravel/coverage.xml/index.xml"
+
 
