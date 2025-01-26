@@ -15,5 +15,5 @@ name = "test-coverage"
 enabled = true
 
   [analyzers.test-coverage]
-  report_glob = "Laravel/coverage.xml/**/*.xml"
+  report_glob = "Laravel/coverage.xml/index.xml"
 
