@@ -38,7 +38,6 @@ jobs:
         DB_USERNAME: ${{ secrets.DB_USERNAME }} 
         DB_PASSWORD: ${{ secrets.DB_PASSWORD }}
       run: cd Laravel && php artisan test
-# php ./vendor/bin/phpunit
 
     - name: Login to DockerHub Registry
       run: echo ${{ secrets.DOCKERHUB_PASSWORD }} | docker login -u ${{ secrets.DOCKERHUB_USERNAME }} --password-stdin
