@@ -22,4 +22,17 @@
     <server name="SESSION_DRIVER" value="array"/>
     <server name="DB_CONNECTION" value="mysql"/>
   </php>
+  <!--<logging>
+      <log type="coverage-clover" target="coverage.xml"/>
+  </logging>-->
+  <coverage processUncoveredFiles="true">
+    <include>
+        <directory suffix=".php">./app</directory>
+    </include>
+    <report>
+        <clover outputFile="coverage.xml"/>
+    </report>
+  </coverage>
+
+
 </phpunit>
