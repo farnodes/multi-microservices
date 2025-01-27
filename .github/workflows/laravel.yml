@@ -105,6 +105,8 @@ jobs:
         if [[ "$(docker network ls -f name=laravel_network )" ]]; then
           echo "Removing existing network..."
           docker network rm laravel_network
+        else
+          echo "Network not found. Proceeding to the next step."
         fi
 
 
